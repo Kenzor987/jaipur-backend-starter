@@ -23,7 +23,7 @@ jobs:
       - name: Run tests
         run: npm run test
       - name: 'Upload Artifact'
-        uses: actions/upload-artifact@v2s
+        uses: actions/upload-artifact@v2
         with:
           name: coverage
           path: /*
