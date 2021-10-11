@@ -23,4 +23,10 @@ jobs:
       - name: Run tests
         run: npm run test
             npm run lint
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage
+          
+      
   
