@@ -4,8 +4,6 @@ on:
     branches:
       - feature/*
       - bugfix/*
-  
-on: 
   push:
     branches: 
       - main
