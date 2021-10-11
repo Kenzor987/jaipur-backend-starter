@@ -1,6 +1,10 @@
 name: Continuous integration
 on: [push]
 jobs:
+  branches: 
+    - main
+    - feature/*
+    - bugfix/*
   test:
     runs-on: ubuntu-latest
     steps:
