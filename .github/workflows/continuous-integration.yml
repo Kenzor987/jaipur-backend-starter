@@ -2,11 +2,11 @@ name: Continuous integration
 on:
   push:
     branches: 
-      - main
+      - master
   pull_request:
     branches:
-      - feature/*
-      - bugfix/*
+      - 'feature/**'
+      - 'bugfix/**'
   
 jobs:
   test:
