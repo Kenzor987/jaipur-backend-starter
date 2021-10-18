@@ -12,4 +12,8 @@ router.post("/", function (req, res) {
   res.status(201).json(newGame)
 })
 
+// Listen to GET /games
+router.get("/", function (req, res) {
+  res.json(gameService.show_games())
+})
 export default router
