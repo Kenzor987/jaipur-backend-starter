@@ -1,7 +1,6 @@
 import express from "express"
 import * as gameService from "../services/gameService"
 import * as databaseService from "../services/databaseService"
-
 const router = express.Router()
 
 // Listen to POST /games
