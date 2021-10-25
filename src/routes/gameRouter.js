@@ -1,5 +1,6 @@
 import express from "express"
 import * as gameService from "../services/gameService"
+import * as databaseService from "../services/databaseService"
 
 const router = express.Router()
 
@@ -12,4 +13,8 @@ router.post("/", function (req, res) {
   res.status(201).json(newGame)
 })
 
+// Listen to GET /games
+router.get("/", function (req, res) {
+  res.json(databaseService.getGames())
+})
 export default router
