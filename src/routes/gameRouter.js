@@ -21,10 +21,10 @@ router.get("/", function (req, res) {
 router.put("/:id/take-good/", function (req, res) {
   const gameId = parseInt(req.params.id)
   const playerId = parseInt(req.header("playerIndex"))
-  if ((playerId === 0 || playerId === 1) && gameId === 0) {
+  if (playerId !== 0 && playerId !== 1 && gameId === 0) {
     return res.status(400).send("Missing path and/or header parameters")
   } else {
-    const game = databaseService.getGames()[gameId]
+    const game = databaseService.getGames()[gameId - 1]
     if (playerId === game.currentPlayerIndex) {
       const playerHand = game._players[playerId].hand
       if (playerHand.length < 7) {
