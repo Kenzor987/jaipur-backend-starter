@@ -183,7 +183,12 @@ describe("Game router", () => {
       isDone: false,
     }
     await request(app).post("/games").send({ name: "test" })
-    const response = await request(app).put("1/take-good").send("diamonds")
+    const response = await request(app)
+      .put("/games/1/take-good")
+      .send({
+        good: "diamonds",
+      })
+      .set("playerIndex", "0")
     expect(response.statusCode).toBe(200)
     expect(response.body).toStrictEqual(expectedGame)
   })
