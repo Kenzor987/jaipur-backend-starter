@@ -13,6 +13,23 @@ export function getGames() {
   }
 }
 
+export function getInfoFromGame(idGame){
+  try {
+    const file = fs.readFileSync(DATABASE_FILE)
+    const obj = JSON.parse(file)
+    var Magame
+    obj.forEach(game=> {
+        if(game.id === idGame){
+          Magame = game
+        }
+    });
+    return Magame
+  } catch (e) {
+    return []
+  }
+
+}
+
 // Save a game to storage/database.json
 export function saveGame(game) {
   const games = getGames()
