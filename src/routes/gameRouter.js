@@ -21,18 +21,28 @@ router.get("/", function (req, res) {
 router.put("/:id/take-good/", function (req, res) {
   const gameId = parseInt(req.params.id)
   const playerId = parseInt(req.header("playerIndex"))
-  if (playerId !== 0 && playerId !== 1 && gameId === 0) {
-    return res.status(400).send("Missing path and/or header parameters")
+  console.log(gameId)
+  if (playerId !== 0 && playerId !== 1) {
+    return res.status(400).send("Missing header parameters or wrong values")
   } else {
-    const game = databaseService.getGames()[gameId - 1]
-    if (playerId === game.currentPlayerIndex) {
-      const playerHand = game._players[playerId].hand
-      if (playerHand.length < 7) {
-        playerHand.forEach((element) => console.log(element))
-        playerHand.push(req.body.good)
-        playerHand.forEach((element) => console.log(element))
+    if (gameId !== 0) {
+      const game = databaseService.getGames()[gameId - 1]
+      if (playerId === game.currentPlayerIndex) {
+        const playerHand = game._players[playerId].hand
+        if (playerHand.length < 7) {
+          playerHand.forEach((element) => console.log(element))
+          playerHand.push(req.body.good)
+          playerHand.forEach((element) => console.log(element))
+          databaseService.saveGame(game)
+          return res.status(200).json(game)
+        } else {
+          return res.status(400).send("Too much cards in hand")
+        }
+      } else {
+        return res.status(400).send("Not the player's turn")
       }
-      return res.status(200).send()
+    } else {
+      return res.status(400).send("Missing path parameters or wrong values")
     }
   }
 })
