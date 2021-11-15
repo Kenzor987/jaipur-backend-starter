@@ -21,7 +21,6 @@ router.get("/", function (req, res) {
 router.put("/:id/take-good/", function (req, res) {
   const gameId = parseInt(req.params.id)
   const playerId = parseInt(req.header("playerIndex"))
-  console.log(gameId)
   if (playerId !== 0 && playerId !== 1) {
     return res.status(400).send("Missing header parameters or wrong values")
   } else {
@@ -30,9 +29,7 @@ router.put("/:id/take-good/", function (req, res) {
       if (playerId === game.currentPlayerIndex) {
         const playerHand = game._players[playerId].hand
         if (playerHand.length < 7) {
-          playerHand.forEach((element) => console.log(element))
           playerHand.push(req.body.good)
-          playerHand.forEach((element) => console.log(element))
           databaseService.saveGame(game)
           return res.status(200).json(game)
         } else {
