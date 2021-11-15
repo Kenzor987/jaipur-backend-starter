@@ -112,4 +112,23 @@ describe("Game router", () => {
       },
     ])
   })
+
+  test("should list a specific game", async () => {
+    fs.readFileSync.mockImplementation(() => {
+      return JSON.stringify([
+        {
+          id: 1,
+          name: "MaximeGame",
+        },
+      ])
+    })
+
+    await request(app).post("/games").send({ name: "MaximeGame" })
+    const response2 = await request(app).get("/games/1")
+    expect(response2.statusCode).toBe(200)
+    expect(response2.body).toStrictEqual({
+      id: 1,
+      name: "MaximeGame",
+    })
+  })
 })

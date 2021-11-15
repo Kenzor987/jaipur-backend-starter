@@ -18,7 +18,7 @@ router.get("/", function (req, res) {
   res.json(databaseService.getGames())
 })
 
-router.get("/:id", function (req, res){
+router.get("/:id", function (req, res) {
   res.json(databaseService.getInfoFromGame(parseInt(req.params.id)))
 })
 export default router
