@@ -21,4 +21,6 @@ router.get("/", function (req, res) {
 router.get("/:id", function (req, res) {
   res.json(databaseService.getInfoFromGame(parseInt(req.params.id)))
 })
+
+router.delete("/:id", function (req, res) {})
 export default router

@@ -102,7 +102,7 @@ describe("Game router", () => {
       ])
     })
 
-    await request(app).post("/games").send({ name: "test" })
+    // await request(app).post("/games").send({ name: "test" })
     const response2 = await request(app).get("/games")
     expect(response2.statusCode).toBe(200)
     expect(response2.body).toStrictEqual([
@@ -123,7 +123,7 @@ describe("Game router", () => {
       ])
     })
 
-    await request(app).post("/games").send({ name: "MaximeGame" })
+    // await request(app).post("/games").send({ name: "MaximeGame" })
     const response2 = await request(app).get("/games/1")
     expect(response2.statusCode).toBe(200)
     expect(response2.body).toStrictEqual({
